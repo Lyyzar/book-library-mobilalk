@@ -56,7 +56,7 @@ class AddBookFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentAddBookBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -67,6 +67,7 @@ class AddBookFragment : Fragment() {
     private fun isEntryValid(): Boolean {
         return viewModel.isEntryValid(
             binding.bookName.text.toString(),
+            binding.bookAuthor.text.toString(),
             binding.bookPages.text.toString(),
             binding.bookFinishedat.text.toString(),
         )
@@ -78,8 +79,9 @@ class AddBookFragment : Fragment() {
     private fun bind(book: Book) {
         binding.apply {
             bookName.setText(book.bookName, TextView.BufferType.SPANNABLE)
+            bookAuthor.setText(book.bookAuthor, TextView.BufferType.SPANNABLE)
             bookPages.setText(book.bookPages.toString(), TextView.BufferType.SPANNABLE)
-            bookFinishedat.setText(book.bookFinishedAt.toString(), TextView.BufferType.SPANNABLE)
+            bookFinishedat.setText(book.bookFinishedAt, TextView.BufferType.SPANNABLE)
             saveAction.setOnClickListener { updateBook() }
         }
     }
@@ -91,6 +93,7 @@ class AddBookFragment : Fragment() {
         if (isEntryValid()) {
             viewModel.addNewBook(
                 binding.bookName.text.toString(),
+                binding.bookAuthor.text.toString(),
                 binding.bookPages.text.toString(),
                 binding.bookFinishedat.text.toString(),
             )
@@ -106,6 +109,7 @@ class AddBookFragment : Fragment() {
         if (isEntryValid()) {
             viewModel.updateBook(
                 this.navigationArgs.bookId,
+                this.binding.bookName.text.toString(),
                 this.binding.bookName.text.toString(),
                 this.binding.bookPages.text.toString(),
                 this.binding.bookFinishedat.text.toString()

@@ -14,12 +14,16 @@
   ~ limitations under the License.
   -->
 <resources>
-    <string name="app_name">Inventory</string>
+    <string name="app_name">Book Inventory</string>
     <string name="sell">Sell</string>
     <string name="finishedat">Finished at:</string>
+    <string name="name">Book name:</string>
+    <string name="author">Author:</string>
+    <string name="b_pages">Book pages:</string>
     <string name="finishedat_req">Finished at <font color='#FF0000'>*</font></string>
     <string name="book_name_req">Book Name <font color='#FF0000'>*</font></string>
     <string name="book_pages_req">Book Pages <font color='#FF0000'>*</font></string>
+    <string name="book_author_req">Book Author <font color='#FF0000'>*</font></string>
     <string name="save_action">Save</string>
     <string name="book_detail_fragment_title">Book Details</string>
     <string name="add_fragment_title">Add Item</string>
@@ -34,4 +38,5 @@
     <string name="currency_symbol">$</string>
     <string name="edit_item">Edit Item</string>
     <string name="add_new_book">Add new book</string>
+    <string name="info_pages">Info</string>
 </resources>

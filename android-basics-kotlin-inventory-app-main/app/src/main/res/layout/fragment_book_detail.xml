@@ -23,20 +23,64 @@
     tools:context=".BookDetailFragment">
 
     <TextView
+        android:id="@+id/book_name_label"
+        style="@style/Widget.Inventory.TextView"
+        android:text="@string/name"
+        android:layout_width="wrap_content"
+        app:layout_constraintBaseline_toBaselineOf="@+id/book_name"
+        app:layout_constraintEnd_toStartOf="@+id/book_name"
+        app:layout_constraintTop_toTopOf="@+id/book_name"
+        app:layout_constraintStart_toStartOf="parent" />
+    <TextView
         android:id="@+id/book_name"
         style="@style/Widget.Inventory.TextView"
-        android:layout_width="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="0dp"
+        android:layout_marginStart="@dimen/margin_between_elements"
+        android:layout_marginTop="@dimen/margin"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/book_name_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
         tools:text="Screwdrivers" />
+
+    <TextView
+        android:id="@+id/book_author_label"
+        style="@style/Widget.Inventory.TextView"
+        android:layout_width="wrap_content"
+        android:text="@string/author"
+        app:layout_constraintBaseline_toBaselineOf="@+id/book_author"
+        app:layout_constraintEnd_toStartOf="@+id/book_author"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/book_author"
+        style="@style/Widget.Inventory.TextView"
+        android:layout_width="0dp"
+        android:layout_marginTop="@dimen/margin"
+        android:layout_marginStart="@dimen/margin_between_elements"
+        app:layout_constraintStart_toEndOf="@+id/book_author_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/book_name"
+        tools:text="Edgar Allen Poe" />
+
+    <TextView
+        android:id="@+id/book_pages_label"
+        style="@style/Widget.Inventory.TextView"
+        android:layout_width="wrap_content"
+        android:text="@string/b_pages"
+        app:layout_constraintBaseline_toBaselineOf="@+id/book_pages"
+        app:layout_constraintEnd_toStartOf="@+id/book_pages"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/book_pages"
         style="@style/Widget.Inventory.TextView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_marginStart="@dimen/margin_between_elements"
         android:layout_marginTop="@dimen/margin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/book_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/book_pages_label"
+        app:layout_constraintTop_toBottomOf="@+id/book_author"
         tools:text="256 oldal" />
 
     <TextView

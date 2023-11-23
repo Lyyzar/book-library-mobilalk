@@ -33,6 +33,7 @@ class InventoryViewModel(private val bookDao: BookDao) : ViewModel() {
 
     // Cache all items form the database using LiveData.
     val allBooks: LiveData<List<Book>> = bookDao.getBooks().asLiveData()
+    val allPages: LiveData<Int> = bookDao.getSumOfPages()
 
 
     /**
@@ -41,10 +42,11 @@ class InventoryViewModel(private val bookDao: BookDao) : ViewModel() {
     fun updateBook(
         bookId: Int,
         bookName: String,
+        bookAuthor: String,
         bookPages: String,
         bookFinishedAt: String
     ) {
-        val updatedBook = getUpdatedBookEntry(bookId, bookName, bookPages, bookFinishedAt)
+        val updatedBook = getUpdatedBookEntry(bookId, bookName, bookAuthor, bookPages, bookFinishedAt)
         updateBook(updatedBook)
     }
 
@@ -63,8 +65,8 @@ class InventoryViewModel(private val bookDao: BookDao) : ViewModel() {
     /**
      * Inserts the new Item into database.
      */
-    fun addNewBook(bookName: String, bookPages: String, bookFinishedAt: String) {
-        val newBook = getNewBookEntry(bookName, bookPages, bookFinishedAt)
+    fun addNewBook(bookName: String, bookAuthor: String, bookPages: String, bookFinishedAt: String) {
+        val newBook = getNewBookEntry(bookName, bookAuthor, bookPages, bookFinishedAt)
         insertBook(newBook)
     }
 
@@ -96,8 +98,8 @@ class InventoryViewModel(private val bookDao: BookDao) : ViewModel() {
     /**
      * Returns true if the EditTexts are not empty
      */
-    fun isEntryValid(bookName: String, bookPages: String, bookFinishedAt: String): Boolean {
-        if (bookName.isBlank() || bookPages.isBlank() || bookFinishedAt.isBlank()) {
+    fun isEntryValid(bookName: String, bookAuthor: String, bookPages: String, bookFinishedAt: String): Boolean {
+        if (bookName.isBlank() || bookAuthor.isBlank() || bookPages.isBlank() || bookFinishedAt.isBlank()) {
             return false
         }
         return true
@@ -107,11 +109,12 @@ class InventoryViewModel(private val bookDao: BookDao) : ViewModel() {
      * Returns an instance of the [Book] entity class with the item info entered by the user.
      * This will be used to add a new entry to the Inventory database.
      */
-    private fun getNewBookEntry(bookName: String, bookPages: String, bookFinishedAt: String): Book {
+    private fun getNewBookEntry(bookName: String, bookAuthor: String,bookPages: String, bookFinishedAt: String): Book {
         return Book(
             bookName = bookName,
-            bookPages = bookPages.toDouble(),
-            bookFinishedAt = bookFinishedAt.toInt()
+            bookAuthor = bookAuthor,
+            bookPages = bookPages.toInt(),
+            bookFinishedAt = bookFinishedAt
         )
     }
 
@@ -122,16 +125,19 @@ class InventoryViewModel(private val bookDao: BookDao) : ViewModel() {
     private fun getUpdatedBookEntry(
         bookId: Int,
         bookName: String,
+        bookAuthor: String,
         bookPages: String,
         bookFinishedAt: String
     ): Book {
         return Book(
             id = bookId,
             bookName = bookName,
-            bookPages = bookPages.toDouble(),
-            bookFinishedAt = bookFinishedAt.toInt()
+            bookAuthor = bookAuthor,
+            bookPages = bookPages.toInt(),
+            bookFinishedAt = bookFinishedAt
         )
     }
+
 }
 
 /**

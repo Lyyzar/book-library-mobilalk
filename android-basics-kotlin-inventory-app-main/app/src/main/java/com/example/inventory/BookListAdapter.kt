@@ -55,7 +55,7 @@ class BookListAdapter(private val onBookClicked: (Book) -> Unit) :
         fun bind(book: Book) {
             binding.bookName.text = book.bookName
             binding.bookPages.text = book.bookPages.toString()
-            binding.bookFinishedat.text = book.bookFinishedAt.toString()
+            binding.bookFinishedat.text = book.bookFinishedAt
         }
     }
 

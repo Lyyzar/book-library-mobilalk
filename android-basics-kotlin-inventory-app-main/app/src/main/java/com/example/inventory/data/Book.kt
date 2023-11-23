@@ -18,7 +18,6 @@ package com.example.inventory.data
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.text.NumberFormat
 
 /**
  * Entity data class represents a single row in the database.
@@ -29,13 +28,10 @@ data class Book(
     val id: Int = 0,
     @ColumnInfo(name = "name")
     val bookName: String,
+    @ColumnInfo(name = "author")
+    val bookAuthor: String,
     @ColumnInfo(name = "pages")
-    val bookPages: Double,
+    val bookPages: Int,
     @ColumnInfo(name = "finishedat")
-    val bookFinishedAt: Int,
+    val bookFinishedAt: String,
 )
-/**
- * Returns the passed in price in currency format.
- */
-fun Book.getFormattedPrice(): String =
-    NumberFormat.getCurrencyInstance().format(bookPages)

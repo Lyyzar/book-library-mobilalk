@@ -20,7 +20,5 @@ import com.example.inventory.data.BookRoomDatabase
 
 
 class InventoryApplication : Application() {
-    // Using by lazy so the database is only created when needed
-    // rather than when the application starts
     val database: BookRoomDatabase by lazy { BookRoomDatabase.getDatabase(this) }
 }

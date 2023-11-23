@@ -48,7 +48,7 @@ class BookDetailFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentBookDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -59,8 +59,9 @@ class BookDetailFragment : Fragment() {
     private fun bind(book: Book) {
         binding.apply {
             bookName.text = book.bookName
+            bookAuthor.text = book.bookAuthor
             bookPages.text = book.bookPages.toString()
-            bookFinishedat.text = book.bookFinishedAt.toString()
+            bookFinishedat.text = book.bookFinishedAt
             deleteBook.setOnClickListener { showConfirmationDialog() }
             editBook.setOnClickListener { editBook() }
         }

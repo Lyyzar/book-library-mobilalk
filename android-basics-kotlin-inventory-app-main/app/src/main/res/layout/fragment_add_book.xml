@@ -38,6 +38,24 @@
                 android:id="@+id/book_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:inputType="textAutoComplete"
+                android:singleLine="true" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/book_author_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin"
+            android:hint="@string/book_author_req"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/book_name_label">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/book_author"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:inputType="textAutoComplete|textCapWords"
                 android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -50,14 +68,13 @@
             android:hint="@string/book_pages_req"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/book_name_label"
-            app:prefixText="@string/currency_symbol">
+            app:layout_constraintTop_toBottomOf="@+id/book_author_label">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/book_pages"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="numberDecimal"
+                android:inputType="number"
                 android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -76,7 +93,8 @@
                 android:id="@+id/book_finishedat"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="number"
+                android:digits="0123456789.-"
+                android:inputType="text"
                 android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 

@@ -15,6 +15,7 @@
  */
 package com.example.inventory.data
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -34,6 +35,9 @@ interface BookDao {
 
     @Query("SELECT * from book WHERE id = :id")
     fun getBook(id: Int): Flow<Book>
+
+    @Query("SELECT SUM(pages) FROM book")
+    fun getSumOfPages(): LiveData<Int>;
 
     // Specify the conflict strategy as IGNORE, when the user tries to add an
     // existing Item into the database Room ignores the conflict.

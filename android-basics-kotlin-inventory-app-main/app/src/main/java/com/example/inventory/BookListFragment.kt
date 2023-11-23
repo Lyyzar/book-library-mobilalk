@@ -20,6 +20,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -43,9 +44,16 @@ class BookListFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = BookListFragmentBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    private fun showToast(){
+        viewModel.allPages.observe(this.viewLifecycleOwner){ pages ->
+            Toast.makeText(requireContext().applicationContext,"All pages read so far: " + pages.toString(),Toast.LENGTH_SHORT).show()
+        }
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -66,11 +74,15 @@ class BookListFragment : Fragment() {
             }
         }
 
+
         binding.floatingActionButton.setOnClickListener {
             val action = BookListFragmentDirections.actionBookListFragmentToAddBookFragment(
                 getString(R.string.add_fragment_title)
             )
             this.findNavController().navigate(action)
+        }
+        binding.floatingInfoButton.setOnClickListener{
+            showToast()
         }
     }
 }
