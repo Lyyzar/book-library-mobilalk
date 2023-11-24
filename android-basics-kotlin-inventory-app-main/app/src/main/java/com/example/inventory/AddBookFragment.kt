@@ -15,8 +15,10 @@
  */
 package com.example.inventory
 
+import android.app.DatePickerDialog
 import android.content.Context.INPUT_METHOD_SERVICE
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,6 +30,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.inventory.data.Book
 import com.example.inventory.databinding.FragmentAddBookBinding
+import java.util.Calendar
 
 /**
  * Fragment to add or update an item in the Inventory database.
@@ -119,6 +122,27 @@ class AddBookFragment : Fragment() {
         }
     }
 
+    private fun showDatePickerDialog() {
+        Log.d("Fragment","showDataPickerDialog() Called!")
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(
+            requireContext(),
+            { _, selectedYear, selectedMonth, selectedDay ->
+                val selectedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
+                binding.bookFinishedat.setText(selectedDate)
+            },
+            year,
+            month,
+            day
+        )
+        datePickerDialog.show()
+    }
+
+
     /**
      * Called when the view is created.
      * The itemId Navigation argument determines the edit item  or add new item.
@@ -128,11 +152,17 @@ class AddBookFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.pickDate.setOnClickListener {
+            showDatePickerDialog()
+        }
+
         val id = navigationArgs.bookId
         if (id > 0) {
+            Log.d("YourFragmentTag", "Editing book id>0 után")
             viewModel.retrieveBook(id).observe(this.viewLifecycleOwner) { selectedBook ->
                 book = selectedBook
                 bind(book)
+
             }
         } else {
             binding.saveAction.setOnClickListener {
