@@ -16,6 +16,7 @@
 
 package com.example.inventory
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -67,6 +68,7 @@ class InventoryViewModel(private val bookDao: BookDao) : ViewModel() {
      */
     fun addNewBook(bookName: String, bookAuthor: String, bookPages: String, bookFinishedAt: String) {
         val newBook = getNewBookEntry(bookName, bookAuthor, bookPages, bookFinishedAt)
+        Log.d("InventoryViewModel","Hozza adtam a " + bookName)
         insertBook(newBook)
     }
 
@@ -76,6 +78,7 @@ class InventoryViewModel(private val bookDao: BookDao) : ViewModel() {
     private fun insertBook(book: Book) {
         viewModelScope.launch {
             bookDao.insert(book)
+            Log.d("InventoryViewModel","insertBook-nál " + book.bookName)
         }
     }
 

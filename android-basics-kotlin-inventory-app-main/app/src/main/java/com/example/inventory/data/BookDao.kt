@@ -33,6 +33,9 @@ interface BookDao {
     @Query("SELECT * from book ORDER BY name ASC")
     fun getBooks(): Flow<List<Book>>
 
+    @Query("SELECT * from book WHERE name = :book_name")
+    fun getBookByName(book_name:String): Flow<Book>
+
     @Query("SELECT * from book WHERE id = :id")
     fun getBook(id: Int): Flow<Book>
 

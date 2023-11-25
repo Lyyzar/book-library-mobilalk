@@ -25,7 +25,7 @@ import androidx.room.PrimaryKey
 @Entity
 data class Book(
     @PrimaryKey(autoGenerate = true)
-    val id: Int = 1,
+    val id: Int = 0,
     @ColumnInfo(name = "name")
     val bookName: String,
     @ColumnInfo(name = "author")

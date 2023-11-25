@@ -93,6 +93,7 @@ class AddBookFragment : Fragment() {
      * Inserts the new Item into database and navigates up to list fragment.
      */
     private fun addNewBook() {
+        Log.d("YourFragmentTag", "Add new book-ba elején")
         if (isEntryValid()) {
             viewModel.addNewBook(
                 binding.bookName.text.toString(),
@@ -102,6 +103,7 @@ class AddBookFragment : Fragment() {
             )
             val action = AddBookFragmentDirections.actionAddBookFragmentToBookListFragment()
             findNavController().navigate(action)
+            Log.d("YourFragmentTag", "Add new bookba végén" +binding.bookName.text )
         }
     }
 
@@ -151,12 +153,13 @@ class AddBookFragment : Fragment() {
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        Log.d("YourFragmentTag","Pickdate listener bindingja")
         binding.pickDate.setOnClickListener {
             showDatePickerDialog()
         }
 
         val id = navigationArgs.bookId
+        Log.d("YourFragmentTag","id check előtt")
         if (id > 0) {
             Log.d("YourFragmentTag", "Editing book id>0 után")
             viewModel.retrieveBook(id).observe(this.viewLifecycleOwner) { selectedBook ->
@@ -165,6 +168,7 @@ class AddBookFragment : Fragment() {
 
             }
         } else {
+            Log.d("YourFragmentTag", "else ágban")
             binding.saveAction.setOnClickListener {
                 addNewBook()
             }
