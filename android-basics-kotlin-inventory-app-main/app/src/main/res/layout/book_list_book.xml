@@ -26,6 +26,7 @@
         android:id="@+id/book_name"
         style="@style/Widget.Inventory.ListItemTextView"
         android:layout_width="180dp"
+        android:paddingLeft="10dp"
         android:layout_marginStart="@dimen/margin_between_elements"
         android:fontFamily="sans-serif"
         app:layout_constraintEnd_toStartOf="@+id/book_pages"
