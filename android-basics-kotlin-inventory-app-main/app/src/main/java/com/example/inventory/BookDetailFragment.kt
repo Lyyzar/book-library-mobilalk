@@ -28,9 +28,6 @@ import com.example.inventory.data.Book
 import com.example.inventory.databinding.FragmentBookDetailBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-/**
- * [BookDetailFragment] displays the details of the selected item.
- */
 class BookDetailFragment : Fragment() {
     private val navigationArgs: BookDetailFragmentArgs by navArgs()
     lateinit var book: Book
@@ -53,9 +50,7 @@ class BookDetailFragment : Fragment() {
         return binding.root
     }
 
-    /**
-     * Binds views with the passed in item data.
-     */
+
     private fun bind(book: Book) {
         binding.apply {
             bookName.text = book.bookName
@@ -67,9 +62,7 @@ class BookDetailFragment : Fragment() {
         }
     }
 
-    /**
-     * Navigate to the Edit item screen.
-     */
+
     private fun editBook() {
         val action = BookDetailFragmentDirections.actionBookDetailFragmentToAddBookFragment(
             getString(R.string.edit_fragment_title),
@@ -78,9 +71,7 @@ class BookDetailFragment : Fragment() {
         this.findNavController().navigate(action)
     }
 
-    /**
-     * Displays an alert dialog to get the user's confirmation before deleting the item.
-     */
+
     private fun showConfirmationDialog() {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle(getString(android.R.string.dialog_alert_title))
@@ -93,9 +84,7 @@ class BookDetailFragment : Fragment() {
             .show()
     }
 
-    /**
-     * Deletes the current item and navigates to the list fragment.
-     */
+
     private fun deleteBook() {
         viewModel.deleteBook(book)
         findNavController().navigateUp()
@@ -113,9 +102,7 @@ class BookDetailFragment : Fragment() {
         }
     }
 
-    /**
-     * Called when fragment is destroyed.
-     */
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

@@ -32,9 +32,7 @@ import com.example.inventory.data.Book
 import com.example.inventory.databinding.FragmentAddBookBinding
 import java.util.Calendar
 
-/**
- * Fragment to add or update an item in the Inventory database.
- */
+
 class AddBookFragment : Fragment() {
 
     // Use the 'by activityViewModels()' Kotlin property delegate from the fragment-ktx artifact
@@ -64,9 +62,7 @@ class AddBookFragment : Fragment() {
         return binding.root
     }
 
-    /**
-     * Returns true if the EditTexts are not empty
-     */
+
     private fun isEntryValid(): Boolean {
         return viewModel.isEntryValid(
             binding.bookName.text.toString(),
@@ -76,9 +72,7 @@ class AddBookFragment : Fragment() {
         )
     }
 
-    /**
-     * Binds views with the passed in [book] information.
-     */
+
     private fun bind(book: Book) {
         binding.apply {
             bookName.setText(book.bookName, TextView.BufferType.SPANNABLE)
@@ -89,11 +83,8 @@ class AddBookFragment : Fragment() {
         }
     }
 
-    /**
-     * Inserts the new Item into database and navigates up to list fragment.
-     */
+
     private fun addNewBook() {
-        Log.d("YourFragmentTag", "Add new book-ba elején")
         if (isEntryValid()) {
             viewModel.addNewBook(
                 binding.bookName.text.toString(),
@@ -103,13 +94,10 @@ class AddBookFragment : Fragment() {
             )
             val action = AddBookFragmentDirections.actionAddBookFragmentToBookListFragment()
             findNavController().navigate(action)
-            Log.d("YourFragmentTag", "Add new bookba végén" +binding.bookName.text )
         }
     }
 
-    /**
-     * Updates an existing Item in the database and navigates up to list fragment.
-     */
+
     private fun updateBook() {
         if (isEntryValid()) {
             viewModel.updateBook(
@@ -125,7 +113,6 @@ class AddBookFragment : Fragment() {
     }
 
     private fun showDatePickerDialog() {
-        Log.d("Fragment","showDataPickerDialog() Called!")
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)
         val month = calendar.get(Calendar.MONTH)
@@ -145,39 +132,26 @@ class AddBookFragment : Fragment() {
     }
 
 
-    /**
-     * Called when the view is created.
-     * The itemId Navigation argument determines the edit item  or add new item.
-     * If the itemId is positive, this method retrieves the information from the database and
-     * allows the user to update it.
-     */
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("YourFragmentTag","Pickdate listener bindingja")
         binding.pickDate.setOnClickListener {
             showDatePickerDialog()
         }
-
         val id = navigationArgs.bookId
-        Log.d("YourFragmentTag","id check előtt")
         if (id > 0) {
-            Log.d("YourFragmentTag", "Editing book id>0 után")
             viewModel.retrieveBook(id).observe(this.viewLifecycleOwner) { selectedBook ->
                 book = selectedBook
                 bind(book)
 
             }
         } else {
-            Log.d("YourFragmentTag", "else ágban")
             binding.saveAction.setOnClickListener {
                 addNewBook()
             }
         }
     }
 
-    /**
-     * Called before fragment is destroyed.
-     */
     override fun onDestroyView() {
         super.onDestroyView()
         // Hide keyboard.

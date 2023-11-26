@@ -24,9 +24,6 @@ import com.example.inventory.data.Book
 import com.example.inventory.databinding.BookListBookBinding
 
 
-/**
- * [ListAdapter] implementation for the recyclerview.
- */
 
 class BookListAdapter(private val onBookClicked: (Book) -> Unit) :
     ListAdapter<Book, BookListAdapter.BookViewHolder>(DiffCallback) {

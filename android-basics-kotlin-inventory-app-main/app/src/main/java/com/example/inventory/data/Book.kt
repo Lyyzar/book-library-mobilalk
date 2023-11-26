@@ -19,9 +19,6 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-/**
- * Entity data class represents a single row in the database.
- */
 @Entity
 data class Book(
     @PrimaryKey(autoGenerate = true)

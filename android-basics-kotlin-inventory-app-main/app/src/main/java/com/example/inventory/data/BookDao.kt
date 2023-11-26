@@ -24,9 +24,7 @@ import androidx.room.Query
 import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 
-/**
- * Database access object to access the Inventory database
- */
+
 @Dao
 interface BookDao {
 
@@ -42,8 +40,6 @@ interface BookDao {
     @Query("SELECT SUM(pages) FROM book")
     fun getSumOfPages(): LiveData<Int>;
 
-    // Specify the conflict strategy as IGNORE, when the user tries to add an
-    // existing Item into the database Room ignores the conflict.
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(book: Book)
 

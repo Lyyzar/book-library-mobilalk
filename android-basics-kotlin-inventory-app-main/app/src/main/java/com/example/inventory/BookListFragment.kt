@@ -29,9 +29,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.inventory.data.BookDao
 import com.example.inventory.databinding.BookListFragmentBinding
 
-/**
- * Main fragment displaying details for all items in the database.
- */
+
 class BookListFragment : Fragment() {
     private val viewModel: InventoryViewModel by activityViewModels {
         InventoryViewModelFactory(
@@ -68,8 +66,6 @@ class BookListFragment : Fragment() {
         }
         binding.recyclerView.layoutManager = LinearLayoutManager(this.context)
         binding.recyclerView.adapter = adapter
-        // Attach an observer on the allItems list to update the UI automatically when the data
-        // changes.
         viewModel.allBooks.observe(this.viewLifecycleOwner) { books ->
             books.let {
                 adapter.submitList(it)
